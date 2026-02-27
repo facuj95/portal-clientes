@@ -7,9 +7,16 @@ export default function Home() {
   const host =
     typeof window !== "undefined" ? window.location.hostname : "";
 
+  const params =
+    typeof window !== "undefined"
+      ? new URLSearchParams(window.location.search)
+      : null;
+
+  const clienteParam = params?.get("cliente");
+
   const subdomain = host.split(".")[0];
 
-  const cliente = clientes[subdomain];
+  const cliente = clientes[clienteParam || subdomain];
 
   if (!cliente) {
     return (
