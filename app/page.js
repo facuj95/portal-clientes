@@ -18,7 +18,20 @@ export default function Home() {
 
   const clienteParam = params?.get("cliente");
   const subdomain = host.split(".")[0];
-  const cliente = clientes[clienteParam || subdomain];
+
+  const clienteId = useMemo(() => {
+    if (clienteParam && clientes[clienteParam]) {
+      return clienteParam;
+    }
+
+    if (subdomain && clientes[subdomain]) {
+      return subdomain;
+    }
+
+    return "demo";
+  }, [clienteParam, subdomain]);
+
+  const cliente = clientes[clienteId];
 
   const [seccionActiva, setSeccionActiva] = useState(SECCIONES[0].id);
 
@@ -38,7 +51,7 @@ export default function Home() {
   if (!cliente) {
     return (
       <div className="h-screen flex items-center justify-center text-xl">
-        Cliente no encontrado
+        Cliente no encontrado. Usa ?cliente=demo en la URL.
       </div>
     );
   }
