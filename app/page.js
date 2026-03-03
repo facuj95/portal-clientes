@@ -6,7 +6,7 @@ import { clientes } from "../lib/clientes";
 const SECCIONES = [
   { id: "resumen", label: "Resumen" },
   { id: "matrizEstado", label: "Matriz de estado" },
-  { id: "historicoEstados", label: "Historico de estados" },
+  { id: "historicoEstados", label: "Historico de activos" },
 ];
 
 export default function Home() {
@@ -58,6 +58,10 @@ export default function Home() {
   return (
     <div className="h-screen w-full flex bg-[#f5f7fb] text-[#0f172a]">
       <aside className="relative z-20 w-[280px] shrink-0 bg-[#0b1220] text-white flex flex-col p-6 gap-8">
+        <div className="rounded-xl bg-white/10 border border-white/20 p-4">
+          <p className="text-2xl font-semibold">Prediman</p>
+        </div>
+
         <div className="rounded-xl bg-white/10 border border-white/20 p-4">
           <p className="text-xs uppercase tracking-[0.18em] text-white/70">Empresa</p>
           <h1 className="mt-2 text-2xl font-semibold">{cliente.logoTexto || cliente.nombre}</h1>
