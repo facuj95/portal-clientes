@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 430 430" role="img" aria-labelledby="title desc">
+  <title id="title">Logo PrediMan</title>
+  <desc id="desc">PrediMan Ingeniería Predictiva</desc>
+  <rect width="430" height="430" fill="#efefef" />
+  <text x="40" y="215" font-family="Arial, Helvetica, sans-serif" font-size="72" font-weight="700" fill="#8f7f2c">PrediMan</text>
+  <text x="40" y="285" font-family="Arial, Helvetica, sans-serif" font-size="42" font-weight="600" fill="#6f6330">Ingeniería Predictiva</text>
+</svg>
