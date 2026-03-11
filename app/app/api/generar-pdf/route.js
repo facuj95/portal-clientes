@@ -2,7 +2,7 @@ import puppeteer from "puppeteer-core";
 import chromium from "@sparticuz/chromium";
 
 export async function POST(req) {
-
+  
   try {
 
     const { html } = await req.json();
