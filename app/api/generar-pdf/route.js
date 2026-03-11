@@ -2,7 +2,6 @@ import puppeteer from "puppeteer-core";
 import chromium from "@sparticuz/chromium";
 
 export async function POST(req) {
-
   try {
 
     const { html } = await req.json();
@@ -10,7 +9,7 @@ export async function POST(req) {
     const browser = await puppeteer.launch({
       args: chromium.args,
       executablePath: await chromium.executablePath(),
-      headless: true
+      headless: chromium.headless
     });
 
     const page = await browser.newPage();
@@ -20,7 +19,8 @@ export async function POST(req) {
     });
 
     const pdf = await page.pdf({
-      format: "A4"
+      format: "A4",
+      printBackground: true
     });
 
     await browser.close();
@@ -38,5 +38,4 @@ export async function POST(req) {
     });
 
   }
-
 }
