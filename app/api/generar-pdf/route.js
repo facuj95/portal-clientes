@@ -1,8 +1,8 @@
 import puppeteer from "puppeteer-core";
-import chromium from "@sparticuz/chromium";
+import chromium from "@sparticuz/chromium-min";
 
 export async function POST(req) {
-  
+
   try {
 
     const { html } = await req.json();
@@ -10,7 +10,7 @@ export async function POST(req) {
     const browser = await puppeteer.launch({
       args: chromium.args,
       executablePath: await chromium.executablePath(),
-      headless: chromium.headless
+      headless: true
     });
 
     const page = await browser.newPage();
@@ -38,4 +38,5 @@ export async function POST(req) {
     });
 
   }
+
 }
