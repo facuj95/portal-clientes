@@ -65,6 +65,13 @@ export default function Home() {
         <div className="rounded-xl bg-white/10 border border-white/20 p-4">
           <p className="text-xs uppercase tracking-[0.18em] text-white/70">Empresa</p>
           <h1 className="mt-2 text-2xl font-semibold">{cliente.logoTexto || cliente.nombre}</h1>
+          {cliente.logoUrl ? (
+            <img
+              src={cliente.logoUrl}
+              alt={`Logo de ${cliente.nombre}`}
+              className="mt-4 max-h-16 w-auto object-contain"
+            />
+          ) : null}
         </div>
 
         <nav className="flex flex-col gap-3">
