@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useMemo, useState } from "react";
 import { clientes } from "../lib/clientes";
 
@@ -58,14 +59,28 @@ export default function Home() {
   return (
     <div className="h-screen w-full flex bg-[#f5f7fb] text-[#0f172a]">
       <aside className="relative z-20 w-[280px] shrink-0 bg-[#0b1220] text-white flex flex-col p-6 gap-8">
-        <div className="rounded-xl bg-white/10 border border-white/20 p-4">
-          <p className="text-2xl font-semibold">Prediman</p>
+        <div className="rounded-xl bg-white/10 border border-white/20 p-4 flex justify-center">
+          <Image
+            src="/ingprediman_logo.jpg"
+            alt="Prediman"
+            width={180}
+            height={52}
+            className="h-auto w-full max-w-[180px] object-contain"
+            priority
+          />
         </div>
 
-        <div className="rounded-xl bg-white/10 border border-white/20 p-4">
-          <p className="text-xs uppercase tracking-[0.18em] text-white/70">Empresa</p>
-          <h1 className="mt-2 text-2xl font-semibold">{cliente.logoTexto || cliente.nombre}</h1>
-        </div>
+        {cliente.logoUrl ? (
+          <div className="self-start rounded-xl bg-white/10 border border-white/20 p-3">
+            <Image
+              src={cliente.logoUrl}
+              alt={`Logo de ${cliente.nombre}`}
+              width={180}
+              height={72}
+              className="h-auto w-auto max-h-[72px] object-contain"
+            />
+          </div>
+        ) : null}
 
         <nav className="flex flex-col gap-3">
           {SECCIONES.map((seccion) => {
