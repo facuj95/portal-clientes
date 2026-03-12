@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useMemo, useState } from "react";
 import { clientes } from "../lib/clientes";
 
@@ -57,37 +58,53 @@ export default function Home() {
 
   return (
     <div className="h-screen w-full flex bg-[#f5f7fb] text-[#0f172a]">
-      <aside className="relative z-20 w-[280px] shrink-0 bg-[#0b1220] text-white flex flex-col p-6 gap-8">
-        <div className="rounded-xl bg-white/10 border border-white/20 p-4">
-          <p className="text-2xl font-semibold">Prediman</p>
+      <aside className="relative z-20 w-[280px] shrink-0 flex flex-col bg-[#0b1220]">
+        <div className="bg-white px-6 pt-1 pb-0 flex justify-center">
+          <Image
+            src="/ingprediman_logo.jpg"
+            alt="Prediman"
+            width={180}
+            height={72}
+            className="h-auto w-full max-w-[180px] object-contain"
+            priority
+          />
         </div>
 
-        <div className="rounded-xl bg-white/10 border border-white/20 p-4">
-          <p className="text-xs uppercase tracking-[0.18em] text-white/70">Empresa</p>
-          <h1 className="mt-2 text-2xl font-semibold">{cliente.logoTexto || cliente.nombre}</h1>
+        <div className="flex-1 bg-[#0b1220] px-6 py-6 flex flex-col gap-8">
+          {cliente.logoUrl ? (
+            <div className="w-full rounded-xl bg-white border border-white/20 px-2 py-1.5 flex justify-center">
+              <Image
+                src={cliente.logoUrl}
+                alt={`Logo de ${cliente.nombre}`}
+                width={180}
+                height={72}
+                className="h-auto w-auto max-h-[72px] max-w-full object-contain"
+              />
+            </div>
+          ) : null}
+
+          <nav className="flex flex-col gap-3">
+            {SECCIONES.map((seccion) => {
+              const activa = seccionActiva === seccion.id;
+
+              return (
+                <button
+                  key={seccion.id}
+                  type="button"
+                  onClick={() => setSeccionActiva(seccion.id)}
+                  aria-pressed={activa}
+                  className={`cursor-pointer rounded-xl px-4 py-3 text-left transition ${
+                    activa
+                      ? "bg-[#2563eb] text-white shadow-lg"
+                      : "bg-white/5 hover:bg-white/15 text-white/90"
+                  }`}
+                >
+                  {seccion.label}
+                </button>
+              );
+            })}
+          </nav>
         </div>
-
-        <nav className="flex flex-col gap-3">
-          {SECCIONES.map((seccion) => {
-            const activa = seccionActiva === seccion.id;
-
-            return (
-              <button
-                key={seccion.id}
-                type="button"
-                onClick={() => setSeccionActiva(seccion.id)}
-                aria-pressed={activa}
-                className={`cursor-pointer rounded-xl px-4 py-3 text-left transition ${
-                  activa
-                    ? "bg-[#2563eb] text-white shadow-lg"
-                    : "bg-white/5 hover:bg-white/15 text-white/90"
-                }`}
-              >
-                {seccion.label}
-              </button>
-            );
-          })}
-        </nav>
       </aside>
 
       <main className="relative z-10 min-w-0 flex-1 p-4">
